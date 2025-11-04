@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Masters Medellin - Tu socio inmobiliario en la Ciudad de la Eterna Primavera</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800;900&family=Outfit:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/db.js" defer></script>
+    <script src="js/currency.js" defer></script>
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="header">
+        <nav>
+            <a href="#hero" class="logo">
+                <img src="img/LogoOriginal.png" alt="" style="width: 80px; height: 60px;">
+                <div class="brand">
+                    <span class="title">House <span class="accent">Masters</span></span>
+                    <span class="subtitle">MEDE<span class="li-tweak">LLÍ</span>N</span>
+                </div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#hero">Inicio</a></li>
+                <li><a href="catalogo.html">Propiedades</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="favoritos.html">Favoritos</a></li>
+            </ul>
+            <div class="nav-toggle" id="navToggle">
+                <span></span><span></span><span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-main">
+            <!-- Columna izquierda (texto) -->
+            <div class="hero-content">
+                <div class="top-badge">Más de 500 inmuebles disponibles</div>
+                <h1 class="hero-title">Encuentra tu hogar ideal en minutos</h1>
+                <p class="hero-subtitle">
+                    Explora casas, apartamentos y lotes verificados. Compara precios, filtra por barrio o
+                    características, y guarda tus favoritos para decidir con calma.
+                </p>
+                <div class="hero-actions">
+                    <a href="catalogo.html" class="btn btn-primary">Ver catálogo</a>
+                    <a href="#contacto" class="btn btn-secondary">Contactanos</a>
+                </div>
+            </div>
+
+            <div class="hero-slider">
+                <div class="slider-track">
+                    <!-- Set A -->
+                    <div class="slide"><img src="./img/slide1.jpg" alt="Medellin 1"></div>
+                    <div class="slide"><img src="./img/slide2.jpg" alt="Medellin 2"></div>
+                    <div class="slide"><img src="./img/slide3.jpg" alt="Medellin 3"></div>
+                    <div class="slide"><img src="./img/slide4.jpg" alt="Medellin 4"></div>
+                    <div class="slide"><img src="./img/slide5.jpg" alt="Medellin 5"></div>
+
+                    <!-- Set B (duplicado para loop continuo) -->
+                    <div class="slide"><img src="./img/slide1.jpg" alt="Medellin 1"></div>
+                    <div class="slide"><img src="./img/slide2.jpg" alt="Medellin 2"></div>
+                    <div class="slide"><img src="./img/slide3.jpg" alt="Medellin 3"></div>
+                    <div class="slide"><img src="./img/slide4.jpg" alt="Medellin 4"></div>
+                    <div class="slide"><img src="./img/slide5.jpg" alt="Medellin 5"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarjetas inferiores del hero -->
+        <div class="hero-features">
+            <div class="h-card">
+                <div class="h-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <div>
+                    <h3>Verificación de inmuebles</h3>
+                    <p>Publicaciones verificadas para tu tranquilidad.</p>
+                </div>
+            </div>
+            <div class="h-card">
+                <div class="h-icon"><i class="fa-solid fa-dollar-sign"></i></div>
+                <div>
+                    <h3>Precios actualizados</h3>
+                    <p>Conversión a USD/EUR al instante. </p>
+                </div>
+            </div>
+            <div class="h-card">
+                <div class="h-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                <div>
+                    <h3>Búsqueda rápida</h3>
+                    <p>Filtra por zona, tipo y características.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Properties Section -->
+    <section class="properties" id="propiedades">
+        <div class="container">
+            <div class="properties-header scroll-animate">
+                <div class="section-header">
+                    <h2 class="section-title">Propiedades Destacadas</h2>
+                    <p class="section-subtitle">Descubre nuestra selección de inmuebles premium en las mejores
+                        ubicaciones</p>
+                </div>
+                <a href="catalogo.html" class="view-all-btn">
+                    <i class="fas fa-th-large"></i> Ver Todas las Propiedades
+                </a>
+            </div>
+
+            <div class="properties-grid" id="featuredProperties">
+                <!-- Las propiedades se cargarán dinámicamente -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="nosotros">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text scroll-animate">
+                    <h2 class="about-title">Maestros en encontrar tu hogar perfecto</h2>
+                    <p class="about-description">
+                        Desde Medellín, House Masters Medellín trabaja para el Valle de Aburrá. Nos enfocamos únicamente
+                        en venta y arriendo de inmuebles, con un proceso claro de selección y verificación para que cada
+                        publicación tenga respaldo. Presentamos opciones que realmente encajan con tus necesidades y
+                        presupuesto, evitando pérdidas de tiempo y sorpresas.
+                    </p>
+                    <p class="about-description">
+                        Nuestro compromiso va más allá de la venta. Creemos en construir relaciones duraderas basadas en
+                        la confianza, la transparencia y el servicio excepcional. Cada cliente es único y merece una
+                        atención personalizada.
+                    </p>
+
+                    <div class="about-stats">
+                        <div class="about-stat"><span class="about-stat-number" data-count="98">0</span><span
+                                class="about-stat-label">% Satisfacción</span></div>
+                        <div class="about-stat"><span class="about-stat-number" data-count="34">0</span><span
+                                class="about-stat-label">Zonas De Cobertura</span></div>
+                        <div class="about-stat"><span class="about-stat-number" data-count="5">0</span><span
+                                class="about-stat-label">Asesores Inmobiliarios</span></div>
+                        <div class="about-stat"><span class="about-stat-number" data-count="8">0</span><span
+                                class="about-stat-label">Tipos De Inmuebles</span></div>
+                    </div>
+                </div>
+
+                <div class="about-image scroll-animate">
+                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Equipo House Masters Medellin">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Property Types Section -->
+    <section class="property-types" id="tipos">
+        <div class="container">
+            <div class="section-header scroll-animate">
+                <h2 class="section-title">Encuentra el tipo de propiedad que se adapta a ti</h2>
+                <p class="section-subtitle">Desde espacios residenciales llenos de comodidad hasta inmuebles ideales
+                    para tu negocio, aquí puedes explorar todas las opciones disponibles</p>
+            </div>
+            <div class="types-grid" id="typesGrid">
+                <!-- Se cargan dinámicamente -->
+            </div>
+        </div>
+    </section>
+
+
+    <!-- How it works Section -->
+    <section class="how-works" id="como-trabajamos">
+        <div class="container">
+            <div class="section-header scroll-animate">
+                <h2 class="section-title c-title">¿Cómo Trabajamos?</h2>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step-card scroll-animate">
+                    <div class="step-icon"><i class="fas fa-magnifying-glass" aria-hidden="true"></i></div>
+                    <h3 class="step-title">1. Busca</h3>
+                    <p class="step-desc">Explora nuestra amplia base de datos de propiedades con filtros avanzados para
+                        encontrar exactamente lo que necesitas.</p>
+                </div>
+                <div class="step-card scroll-animate">
+                    <div class="step-icon"><i class="fas fa-calendar-check" aria-hidden="true"></i></div>
+                    <h3 class="step-title">2. Agenda</h3>
+                    <p class="step-desc">Programa una visita con nuestros asesores especializados para conocer la
+                        propiedad en persona.</p>
+                </div>
+                <div class="step-card scroll-animate">
+                    <div class="step-icon"><i class="fas fa-handshake" aria-hidden="true"></i></div>
+                    <h3 class="step-title">3. Cierra</h3>
+                    <p class="step-desc">Te acompañamos en todo el proceso legal y administrativo hasta que tengas las
+                        llaves en tus manos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contacto">
+        <div class="container">
+            <div class="section-header scroll-animate">
+                <h2 class="section-title">Contáctanos</h2>
+                <p class="section-subtitle">Estamos aquí para ayudarte a encontrar tu próximo hogar o inversión</p>
+            </div>
+
+            <div class="contact-content">
+                <div class="contact-info scroll-animate">
+                    <h3 class="contact-title">Información de Contacto</h3>
+                    <div class="contact-items">
+                        <!--                         <a class="contact-item" target="_blank" rel="noopener"
+                            href="https://www.google.com/maps/search/?api=1&query=Carrera%2043A%20%2315-25%2C%20El%20Poblado%2C%20Medell%C3%ADn%2C%20Antioquia">
+                            <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div>
+                                <h4>Dirección</h4>
+                                <p>Carrera 43A #15-25, El Poblado<br>Medellín, Antioquia</p>
+                            </div>
+                        </a> -->
+                        <!--                         <a class="contact-item" href="tel:+5744445555">
+                            <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                            <div>
+                                <h4>Teléfono</h4>
+                                <p>+57 (4) 444 5555<br>+57 314 506 9405</p>
+                            </div>
+                        </a> -->
+                        <a class="contact-item" href="mailto:info@HouseMastersMedellin.com">
+                            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                            <div>
+                                <h4>Email</h4>
+                                <p>HouseMastersMedellin@gmail.com</p>
+                            </div>
+                        </a>
+                        <a class="contact-item" target="_blank" rel="noopener"
+                            href="https://wa.me/573001234567?text=Hola%2C%20quiero%20informaci%C3%B3n%20por%20favor.">
+                            <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+                            <div>
+                                <h4>WhatsApp</h4>
+                                <p>+57 314 506 9405<br>Atención inmediata</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-bottom">
+                    <p>&copy; 2024 House Masters Medellin. Todos los derechos reservados. </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/index.js"></script>
+
+</body>
+
+</html>

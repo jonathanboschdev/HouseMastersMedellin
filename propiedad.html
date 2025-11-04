@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Propiedad - House Masters Medellin</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800;900&family=Outfit:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/propiedad.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/db.js" defer></script>
+    <script src="js/currency.js" defer></script>
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="header">
+        <nav>
+            <a href="index.html" class="logo">
+                <img src="img/LogoOriginal.png" alt="" style="width: 80px; height: 60px;">
+                <div class="brand">
+                    <span class="title">House <span class="accent">Masters</span></span>
+                    <span class="subtitle">MEDE<span class="li-tweak">LLÍ</span>N</span>
+                </div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#hero">Inicio</a></li>
+                <li><a href="catalogo.html">Propiedades</a></li>
+                <li><a href="index.html#nosotros">Nosotros</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+                <li><a href="favoritos.html">Favoritos</a></li>
+            </ul>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Inicio</a> / <a href="catalogo.html">Propiedades</a> /
+            <span id="breadcrumbTitle">Propiedad</span>
+        </div>
+
+        <div class="property-header" id="propertyHeader"></div>
+
+        <div class="gallery-container" id="galleryContainer"></div>
+
+        <div class="property-content">
+            <div class="property-details" id="propertyDetails"></div>
+
+            <div class="contact-sidebar">
+                <div class="contact-card">
+                    <div class="agent-info">
+                        <img src="img/LogoOriginal.png" alt="Inmobiliaria" class="agent-photo">
+                        <div class="brand">
+                            <span class="title" style="font-size: clamp(30px, 9vw, 30px);">House <span
+                                    class="accent">Masters</span></span>
+                            <span class="subtitle" style="font-size: clamp(18px, 4vw, 18px)">MEDE<span
+                                    class="li-tweak">LLÍ</span>N</span>
+                        </div>
+                        <div class="agent-title">"Maestros en encontrar tu hogar perfecto"</div>
+                    </div>
+                    <div class="contact-buttons">
+                        <a href="#" id="whatsappLink" class="contact-btn whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                        <a href="#" id="emailLink" class="contact-btn phone-btn">
+                            <i class="fas fa-envelope"></i> Correo
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NUEVA tarjeta independiente: Propiedades Similares (ancho completo, fila de 3 columnas) -->
+        <!-- Reemplaza tu línea actual -->
+        <div id="similarContainer" class="gallery-container" style="display:none;margin-top:30px"></div>
+
+    </div>
+
+    <!-- Modal Galería -->
+    <div id="galleryModal" class="modal" aria-hidden="true">
+        <div class="modal-content">
+            <button class="close" onclick="closeGalleryModal()" aria-label="Cerrar">&times;</button>
+
+            <div id="modalMedia" aria-live="polite"></div>
+
+            <div class="modal-controls" aria-hidden="false">
+                <button onclick="previousModalImage()" class="modal-nav-btn" aria-label="Anterior">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button onclick="nextModalImage()" class="modal-nav-btn" aria-label="Siguiente">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <div id="modalCounter" class="modal-counter">1 / 1</div>
+        </div>
+    </div>
+
+    <!-- Modal Mapa -->
+    <div id="mapModal" class="modal" aria-hidden="true">
+        <div class="modal-content">
+            <button class="close" onclick="closeMapModal()" aria-label="Cerrar">&times;</button>
+            <iframe id="mapFrame" class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-bottom">
+                    <p>&copy; 2024 House Masters Medellin. Todos los derechos reservados. </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/propiedad.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Propiedades - House Masters Medellin</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800;900&family=Outfit:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/catalogo.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/db.js" defer></script>
+    <script src="js/currency.js" defer></script>
+
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="header">
+        <nav>
+            <a href="index.html" class="logo">
+                <img src="img/LogoOriginal.png" alt="" style="width: 80px; height: 60px;">
+                <div class="brand">
+                    <span class="title">House <span class="accent">Masters</span></span>
+                    <span class="subtitle">MEDE<span class="li-tweak">LLÍ</span>N</span>
+                </div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#hero">Inicio</a></li>
+                <li><a href="#" class="active">Propiedades</a></li>
+                <li><a href="index.html#nosotros">Nosotros</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+                <li><a href="favoritos.html">Favoritos</a></li>
+            </ul>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">Catálogo de Propiedades</h1>
+            <p class="page-subtitle">Encuentra tu hogar ideal en las mejores ubicaciones de Medellín</p>
+        </div>
+
+        <!-- Filtros -->
+        <div class="filters-container">
+            <div class="filters-header">
+                <h2 class="filters-title">
+                    <i class="fas fa-filter"></i>
+                    Filtros de Búsqueda
+                </h2>
+                <button class="toggle-filters" onclick="toggleFilters()">
+                    <i class="fas fa-sliders-h"></i> Filtros
+                </button>
+            </div>
+
+            <div class="filters-grid" id="filtersGrid">
+                <div class="filter-group">
+                    <label class="filter-label">Transacción</label>
+                    <select class="filter-input" id="transactionType">
+                        <option value="">Todos</option>
+                        <option value="venta">Venta</option>
+                        <option value="arriendo">Arriendo</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label">Tipo de Inmueble</label>
+                    <select class="filter-input" id="propertyType">
+                        <option value="">Todos</option>
+                        <option value="apartamento">Apartamento</option>
+                        <option value="casa">Casa</option>
+                        <option value="local">Local</option>
+                        <option value="finca">Finca</option>
+                        <option value="bodega">Bodega</option>
+                        <option value="lote">Lote</option>
+                        <option value="apartaestudio">Apartaestudio</option>
+                        <option value="piso_comercial">Piso Comercial</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label">Ubicación</label>
+                    <select class="filter-input" id="location">
+                        <option value="">Todas las zonas</option>
+                        <!-- Medellín (comunas y centro) -->
+                        <option value="popular">Popular</option>
+                        <option value="santa cruz">Santa Cruz</option>
+                        <option value="manrique">Manrique</option>
+                        <option value="aranjuez">Aranjuez</option>
+                        <option value="castilla">Castilla</option>
+                        <option value="doce de octubre">Doce de Octubre</option>
+                        <option value="robledo">Robledo</option>
+                        <option value="villa hermosa">Villa Hermosa</option>
+                        <option value="buenos aires">Buenos Aires</option>
+                        <option value="la candelaria">La Candelaria</option>
+                        <option value="laureles-estadio">Laureles-Estadio</option>
+                        <option value="la america">La América</option>
+                        <option value="san javier">San Javier</option>
+                        <option value="el poblado">El Poblado</option>
+                        <option value="guayabal">Guayabal</option>
+                        <option value="belen">Belén</option>
+                        <!-- Corregimientos de Medellín -->
+                        <option value="san sebastian de palmitas">San Sebastián de Palmitas</option>
+                        <option value="san cristobal">San Cristóbal</option>
+                        <option value="altavista">Altavista</option>
+                        <option value="san antonio de prado">San Antonio de Prado</option>
+                        <option value="santa elena">Santa Elena</option>
+                        <!-- Oriente cercano -->
+                        <option value="guarne">Guarne</option>
+                        <option value="rionegro">Rionegro</option>
+                        <option value="marinilla">Marinilla</option>
+                        <option value="guatape">Guatapé</option>
+                        <!-- Norte del valle de aburra -->
+                        <option value="bello">Bello</option>
+                        <option value="copacabana">Copacabana</option>
+                        <option value="girardota">Girardota</option>
+                        <option value="barbosa">Barbosa</option>
+                        <!-- Sur del valle de aburra -->
+                        <option value="itagui">Itagüí</option>
+                        <option value="envigado">Envigado</option>
+                        <option value="sabaneta">Sabaneta</option>
+                        <option value="la estrella">La Estrella</option>
+                        <option value="caldas">Caldas</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label">Habitaciones</label>
+                    <select class="filter-input" id="bedrooms">
+                        <option value="">Cualquiera</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4+</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label">Baños</label>
+                    <select class="filter-input" id="bathrooms">
+                        <option value="">Cualquiera</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3+</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label">Estrato</label>
+                    <select class="filter-input" id="stratum">
+                        <option value="">Cualquiera</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                </div>
+
+                <div class="filter-group wide">
+                    <label class="filter-label" data-price-label>Rango de Precio (COP)</label>
+                    <div class="price-range">
+                        <input type="number" class="filter-input" id="minPrice" placeholder="Mínimo">
+                        <input type="number" class="filter-input" id="maxPrice" placeholder="Máximo">
+                    </div>
+                </div>
+
+                <div class="filter-group wide">
+                    <label class="filter-label">Área (m²)</label>
+                    <div class="price-range">
+                        <input type="number" class="filter-input" id="minArea" placeholder="Mínimo">
+                        <input type="number" class="filter-input" id="maxArea" placeholder="Máximo">
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-buttons">
+                <button class="btn btn-secondary" onclick="clearFilters()">
+                    <i class="fas fa-times"></i> Limpiar
+                </button>
+                <button class="btn btn-primary" onclick="applyFilters()">
+                    <i class="fas fa-search"></i> Buscar
+                </button>
+            </div>
+        </div>
+
+        <!-- Controles de Vista -->
+        <div class="view-controls">
+            <div class="results-info">
+                <span id="resultsCount">0</span> propiedades encontradas
+            </div>
+
+            <div class="view-options">
+                <div class="view-toggle">
+                    <button class="view-btn active" id="gridViewBtn" onclick="toggleView('grid')">
+                        <i class="fas fa-th-large"></i>
+                    </button>
+                </div>
+
+                <select class="sort-select" id="sortBy" onchange="sortProperties()">
+                    <option value="recent">Más recientes</option>
+                    <option value="price-low">Precio: menor a mayor</option>
+                    <option value="price-high">Precio: mayor a menor</option>
+                    <option value="area">Área</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Contenido Principal -->
+        <div class="properties-content">
+            <!-- Loading -->
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+            </div>
+
+            <!-- Grid de Propiedades -->
+            <div class="properties-grid" id="propertiesGrid">
+                <!-- Las propiedades se generarán dinámicamente -->
+            </div>
+        </div>
+
+        <!-- Paginación -->
+        <div class="pagination" id="pagination">
+            <!-- La paginación se generará dinámicamente -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-bottom">
+                    <p>&copy; 2024 House Masters Medellin. Todos los derechos reservados. </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/catalogo.js"></script>
+
+</body>
+
+</html>
