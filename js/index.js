@@ -240,7 +240,7 @@ function contactWhatsApp(propertyId) {
     const property = window.PROPERTIES_DATA.find(p => String(p.id) === String(propertyId));
     if (!property) return;
     const message = `Hola, estoy interesado en la propiedad: ${property.title} - ${property.location}`;
-    const whatsappUrl = `https://wa.me/573001234567?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/573145069405?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
 }
 
@@ -368,4 +368,5 @@ document.addEventListener('DOMContentLoaded', initLazyLoading);
         document.fonts.ready.then(() => { const prev = loopWidth; measure(); if (prev !== loopWidth) offsetX = offsetX % loopWidth; });
     }
     document.addEventListener('visibilitychange', () => { if (document.hidden) { lastTs = 0; } });
+
 })();
