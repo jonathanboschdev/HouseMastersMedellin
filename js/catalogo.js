@@ -93,6 +93,7 @@ function applyQueryParams() {
     const transaction = params.get('transaction') || '';
     const location = (params.get('location') || '').toLowerCase();
     const budget = params.get('budget') || '';
+    const auto = params.get('autosearch') === '1';
 
     const typeEl = document.getElementById('propertyType');
     const transEl = document.getElementById('transactionType');
@@ -115,8 +116,17 @@ function applyQueryParams() {
         }
     }
 
-    // Ya no aplicamos automáticamente: el usuario decidirá cuándo buscar
-    //setTimeout(applyFilters, 100);
+    // Aplica automáticamente SOLO si venimos desde "Tipos" (autosearch=1)
+    if (auto && (type || transaction || location || budget)) {
+        // Pequeño diferido para asegurar que el DOM esté listo
+        setTimeout(applyFilters, 0);
+        // (Opcional) limpiar la bandera de la URL para que recargas no re-busquen
+        try {
+            const clean = new URL(window.location.href);
+            clean.searchParams.delete('autosearch');
+            history.replaceState({}, '', clean.toString());
+        } catch (_) { /* no-op */ }
+    }
 }
 
 function renderProperties() {
@@ -616,4 +626,5 @@ document.addEventListener('DOMContentLoaded', function () {
         var code = (window.Currency && Currency.code) ? Currency.code : 'COP';
         label.textContent = 'Rango de Precio (' + code + ')';
     } catch (e) { /* no-op */ }
+
 });
