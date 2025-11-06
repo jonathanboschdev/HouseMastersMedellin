@@ -151,7 +151,7 @@ function renderPropertyTypesSection() {
         card.setAttribute('role', 'button');
         card.setAttribute('tabindex', '0');
         card.onclick = () => {
-            const params = new URLSearchParams({ type: cat.filter }); // ya en minúscula exacta
+            const params = new URLSearchParams({ type: cat.filter, autosearch: '1' }); // ← bandera
             window.location.href = 'catalogo.html?' + params.toString();
         };
         card.onkeypress = (e) => { if (e.key === 'Enter') card.click(); };
@@ -370,3 +370,4 @@ document.addEventListener('DOMContentLoaded', initLazyLoading);
     document.addEventListener('visibilitychange', () => { if (document.hidden) { lastTs = 0; } });
 
 })();
+
